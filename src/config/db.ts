@@ -11,7 +11,7 @@ let db: Db;
 export const connectDB = async () => {
   try {
     await client.connect();
-    db = client.db("Aroyana-Exclusives"); // ডাটাবেসের নাম
+    db = client.db("Aroyana-Exclusives"); 
     console.log('MongoDB Connected Successfully!');
   } catch (error) {
     console.error(' MongoDB Connection Error:', error);
