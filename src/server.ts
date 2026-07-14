@@ -6,6 +6,7 @@ import itemRoutes from './routes/itemRoutes';
 import authRoutes from './routes/authRoutes'; 
 import paymentRoutes from "./routes/paymentRoutes";
 import analyticsRoutes from "./routes/analyticsRoutes";
+import orderRoutes from "./routes/orderRoutes";
 
 dotenv.config();
 
@@ -17,7 +18,8 @@ app.use(express.json());
 app.use('/api/items', itemRoutes);
 app.use('/api/auth', authRoutes); 
 app.use('/api/payment', paymentRoutes); 
-app.use("/api/analytics", analyticsRoutes); 
+app.use("/api/analytics", analyticsRoutes);
+app.use("/api/orders", orderRoutes); 
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Aroyana Exclusives Server is Running Perfectly!');
