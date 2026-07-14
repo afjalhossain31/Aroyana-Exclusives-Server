@@ -45,7 +45,6 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    // ২. পাসওয়ার্ড মিলছে কি না চেক করা
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       res.status(400).json({ message: 'Invalid email or password!' });
