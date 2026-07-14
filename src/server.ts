@@ -40,5 +40,4 @@ const startServer = async () => {
 
 startServer();
 
-// Vercel-এর জন্য এটি অবশ্যই রাখবেন:
 module.exports = app;
