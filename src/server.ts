@@ -5,6 +5,7 @@ import { connectDB } from './config/db';
 import itemRoutes from './routes/itemRoutes'; 
 import authRoutes from './routes/authRoutes'; 
 import paymentRoutes from "./routes/paymentRoutes";
+import analyticsRoutes from "./routes/analyticsRoutes";
 
 dotenv.config();
 
@@ -13,11 +14,10 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
-
 app.use('/api/items', itemRoutes);
 app.use('/api/auth', authRoutes); 
-
 app.use('/api/payment', paymentRoutes); 
+app.use("/api/analytics", analyticsRoutes); 
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Aroyana Exclusives Server is Running Perfectly!');
