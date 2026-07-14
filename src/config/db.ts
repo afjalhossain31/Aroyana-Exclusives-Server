@@ -7,7 +7,6 @@ const uri = process.env.MONGO_URI || '';
 const client = new MongoClient(uri);
 
 let db: Db;
-
 export const connectDB = async () => {
   try {
     await client.connect();

@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { getDB } from '../config/db';
 import { ObjectId } from 'mongodb';
 
-// ১. আইটেম অ্যাড করার ফাংশন
+// new item add 
 export const addItem = async (req: Request, res: Response): Promise<void> => {
   try {
     const { title, shortDescription, fullDescription, price, imageUrl, category } = req.body;
@@ -16,7 +16,6 @@ export const addItem = async (req: Request, res: Response): Promise<void> => {
       category: category || 'Uncategorized',
       createdAt: new Date()
     };
-
     const db = getDB();
     const result = await db.collection('items').insertOne(newItem);
 
@@ -26,7 +25,7 @@ export const addItem = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-// ২. সব আইটেম ডেটাবেস থেকে নিয়ে আসার ফাংশন
+// All items fetch function to get all items from the database
 export const getItems = async (req: Request, res: Response): Promise<void> => {
   try {
     const db = getDB();
@@ -38,7 +37,7 @@ export const getItems = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-// ৩. নির্দিষ্ট আইডি দিয়ে একটি প্রোডাক্ট খোঁজার ফাংশন
+//Item details fetch function to get a single item by its ID
 export const getItemById = async (req: Request, res: Response): Promise<void> => {
   try {
     const db = getDB();
@@ -61,12 +60,11 @@ export const getItemById = async (req: Request, res: Response): Promise<void> =>
   }
 };
 
-// ৪. ডিলিট ফাংশন (টাইপ এরর ফিক্সড)
+// Delete item function to remove an item by its ID
 export const deleteItem = async (req: Request, res: Response): Promise<void> => {
   try {
     const db = getDB();
     const rawId = req.params.id;
-    // আইডিকে সবসময় স্ট্রিংয়ে কনভার্ট করা হচ্ছে
     const id = Array.isArray(rawId) ? rawId[0] : rawId;
 
     if (!ObjectId.isValid(id)) {

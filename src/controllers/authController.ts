@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { getDB } from '../config/db';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken'; // টোকেন তৈরির জন্য যুক্ত হলো
+import jwt from 'jsonwebtoken'; 
 
-// ১. ইউজার রেজিস্ট্রেশন ফাংশন (আগেরটাই আছে)
+// user registration function
 export const registerUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { name, email, password } = req.body;
@@ -32,13 +32,13 @@ export const registerUser = async (req: Request, res: Response): Promise<void> =
   }
 };
 
-// ২. ইউজার লগইন ফাংশন (নতুন যুক্ত হলো)
+// user login function
 export const loginUser = async (req: Request, res: Response): Promise<void> => {
   try {
     const { email, password } = req.body;
     const db = getDB();
 
-    // ১. চেক করা হচ্ছে এই ইমেইলে কোনো ইউজার আছে কি না
+    // user key email diye khuje ber kora
     const user = await db.collection('users').findOne({ email });
     if (!user) {
       res.status(400).json({ message: 'Invalid email or password!' });
@@ -51,14 +51,13 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    // ৩. পাসওয়ার্ড মিলে গেলে সিকিউর JWT টোকেন তৈরি করা (ভবিষ্যতে কাজে লাগবে)
+    // Password Match Justified, Now Generate JWT Token
     const token = jwt.sign(
       { userId: user._id, email: user.email },
       process.env.JWT_SECRET || 'fallback_secret_key',
-      { expiresIn: '7d' } // টোকেনের মেয়াদ ৭ দিন
+      { expiresIn: '7d' } 
     );
 
-    // সফল হলে টোকেন ও ইউজারের ইনফো পাঠিয়ে দেওয়া হচ্ছে
     res.status(200).json({
       message: 'Login successful!',
       token,

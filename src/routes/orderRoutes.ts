@@ -4,7 +4,7 @@ import { getUserOrders } from "../controllers/orderController";
 
 const router = express.Router();
 
-// ইউজারের ইমেইল দিয়ে অর্ডার ফেচ করার API
+// User orders fetch route to get all orders for a specific user by email
 router.get("/user/:email", getUserOrders);
 
 export default router;

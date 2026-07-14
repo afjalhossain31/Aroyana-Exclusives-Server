@@ -7,7 +7,6 @@ export const getDashboardStats = async (req: Request, res: Response): Promise<vo
     const db = getDB();
     const orders = await db.collection("orders").find({}).toArray();
 
-    // বারের নাম অনুযায়ী রেভিনিউ হিসাব করার জন্য ডিফল্ট অবজেক্ট
     const dayStats: Record<string, number> = {
       Mon: 0, Tue: 0, Wed: 0, Thu: 0, Fri: 0, Sat: 0, Sun: 0,
     };
@@ -15,10 +14,10 @@ export const getDashboardStats = async (req: Request, res: Response): Promise<vo
     let totalRevenue = 0;
 
     orders.forEach((order) => {
-      // মোট রেভিনিউ
+      // total revenue 
       totalRevenue += order.totalAmount || 0;
 
-      // বারের নাম বের করা (যেমন: Mon, Tue)
+      // day name
       if (order.createdAt) {
         const date = new Date(order.createdAt);
         const dayName = date.toLocaleDateString("en-US", { weekday: "short" });
@@ -28,7 +27,7 @@ export const getDashboardStats = async (req: Request, res: Response): Promise<vo
       }
     });
 
-    // Recharts-এর জন্য সঠিক ফরম্যাটে ডাটা সাজানো
+    // Recharts
     const chartData = [
       { name: "Mon", revenue: dayStats["Mon"] },
       { name: "Tue", revenue: dayStats["Tue"] },
@@ -38,7 +37,7 @@ export const getDashboardStats = async (req: Request, res: Response): Promise<vo
       { name: "Sat", revenue: dayStats["Sat"] },
       { name: "Sun", revenue: dayStats["Sun"] },
     ];
-
+    
     res.status(200).json({
       success: true,
       totalOrders: orders.length,

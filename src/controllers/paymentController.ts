@@ -8,7 +8,6 @@ dotenv.config();
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: '2024-12-18.acacia' as any, 
 });
-
 export const createCheckoutSession = async (req: Request, res: Response): Promise<void> => {
   try {
     const { items, user } = req.body;
