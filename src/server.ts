@@ -18,7 +18,7 @@ app.use(express.json());
 
 // Health check endpoint
 app.get('/', (req: Request, res: Response) => {
-  res.send('Aroyana Exclusives Server is Running Perfectly! 🚀');
+  res.send('Aroyana Exclusives Server is Running Perfectly! ');
 });
  
 app.use('/api/items', itemRoutes);

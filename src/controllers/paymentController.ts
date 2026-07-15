@@ -41,8 +41,8 @@ export const createCheckoutSession = async (req: Request, res: Response): Promis
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: `http://localhost:3000/success`, 
-      cancel_url: `http://localhost:3000/explore`,     
+      success_url: `${process.env.CLIENT_URL}/success`, 
+      cancel_url: `${process.env.CLIENT_URL}/explore`,     
     });
 
     // Total amount calculation for MongoDB storage
