@@ -9,12 +9,15 @@ const client = new MongoClient(uri);
 let db: Db;
 export const connectDB = async () => {
   try {
-    await client.connect();
+
+    // Connect to the MongoDB server deployment
+    // await client.connect();
+
     db = client.db("Aroyana-Exclusives"); 
     console.log('MongoDB Connected Successfully!');
   } catch (error) {
     console.error(' MongoDB Connection Error:', error);
-    process.exit(1);
+    // process.exit(1); // Deployment 
   }
 };
 
