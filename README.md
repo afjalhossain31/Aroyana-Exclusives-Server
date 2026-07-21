@@ -1,3 +1,11 @@
+# Aroyana Exclusives 💎
+
+[![Live Project](https://img.shields.io/badge/🚀-Live_Project-success?style=for-the-badge)](https://aroyana-exclusives.vercel.app)
+[![Frontend Repository](https://img.shields.io/badge/Frontend-Repository-blue?style=for-the-badge&logo=github)](https://github.com/afjalhossain31/Aroyana-Exclusives-Client)
+[![Backend Repository](https://img.shields.io/badge/Backend-Repository-black?style=for-the-badge&logo=github)](https://github.com/afjalhossain31/Aroyana-Exclusives-Server)
+
+---
+
 ## 📄 TypeScript Configuration (`tsconfig.json`)
 
 ```json
